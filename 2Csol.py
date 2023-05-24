@@ -1,18 +1,28 @@
 from ProcessGameState import ProcessGameState
+import seaborn as sns
+from matplotlib import pyplot as plt
+from matplotlib import image
 gameState = ProcessGameState('./data/game_state_frame_data.parquet')
 
-# c)
 conditions = [(gameState.df['team'] =='Team2'), 
               (gameState.df['side'] == 'CT'), 
               (gameState.df['area_name'] =='BombsiteB')]
 team2CTSideData = gameState.filterDf(conditions)
 
-# need to scale the coordinates to fit the map
 
+#TODO: need to scale the coordinates from CSGO data to the coordinates of the map background
+minX = team2CTSideData['x'].min()
+maxX = team2CTSideData['x'].max()
+minY = team2CTSideData['y'].min()
+maxY = team2CTSideData['y'].max()
 
-#Q3)
-#I would use a library called pyinstaller https://pyinstaller.org/en/stable/
-# to package the script into an executable. I could  add a simple interface
-#that allows for input of a parquet file, and map and lets you outline the boundary 
-#of interest directly onto the map. I can then take the coordinates from the outline
-#to use for the boundary
+sns.kdeplot(data=team2CTSideData, x='x', y='y', cmap='YlOrRd', fill=True,alpha=.5)
+map_image = image.imread('./map/BombsiteB.png')
+
+plt.imshow(map_image, extent=[minX, maxX, minY, maxY], aspect='auto')
+
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Heatmap of Team2 CT side BombsiteB')
+plt.show()
+

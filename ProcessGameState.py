@@ -2,7 +2,6 @@ import pandas as pd
 from shapely.geometry import Point, Polygon
 
 class ProcessGameState():
-
     #1A)
     def __init__(self, file):
         self.df = pd.read_parquet(file, engine='pyarrow')
@@ -41,4 +40,3 @@ class ProcessGameState():
     #1C)
     def getWeaponClasses(self):
         return self.df['inventory'].apply(lambda inventory: [item['weapon_class'] for item in inventory] if inventory is not None else [])
-
