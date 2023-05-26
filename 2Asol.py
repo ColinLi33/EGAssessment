@@ -1,4 +1,5 @@
 from ProcessGameState import ProcessGameState
+import numpy as np
 regionOfInterest = [(-1735,250),(-2024,398),(-2806,742),(-2472,1233),(-1565,580)]
 zSampleBounds = (285,421)
 
@@ -24,14 +25,17 @@ roundEntries = {key: False for key in range(minRound, maxRound+1)}
 # filter data further to only have data where the boundary was entered
 conditions.append(boundaryData)
 team2TSideData = gameState.filterDf(conditions)
-
+team2TSideData.sort_values(by='tick')
 for i, roundData in team2TSideData.groupby('round_num'):
-    uniquePlayersInInterval = roundData.groupby(roundData['tick'] // 1280)['player'].nunique()
-    #if atleast two players 
-    if (uniquePlayersInInterval >= 2).any():
-        roundEntries[i] = True
-    else:
-        roundEntries[i] = False
+    uniquePlayers = roundData['player'].unique()
+    if len(uniquePlayers) >= 2:
+        #look at all of their entries to see if there is any overlap
+        masks = [roundData['player'] == player for player in uniquePlayers]
+        combinedMask = np.logical_or.reduce(masks)
+        filteredEntries = roundData[combinedMask]
+        tickDiffs = np.abs(filteredEntries['tick'].to_numpy()[:, None] - filteredEntries['tick'].to_numpy())
+        if np.any(tickDiffs <= 1280):
+            roundEntries[i] = True
 
 count = sum(value == True for value in roundEntries.values())
 print('This strategy was used', count, 'time(s) which is', count/len(roundEntries), "% of rounds played")

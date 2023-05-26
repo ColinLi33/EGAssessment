@@ -2,12 +2,15 @@ from ProcessGameState import ProcessGameState
 import seaborn as sns
 from matplotlib import pyplot as plt
 from matplotlib import image
+from skimage.transform import AffineTransform
+
 gameState = ProcessGameState('./data/game_state_frame_data.parquet')
 
 conditions = [(gameState.df['team'] =='Team2'), 
               (gameState.df['side'] == 'CT'), 
               (gameState.df['area_name'] =='BombsiteB')]
 team2CTSideData = gameState.filterDf(conditions)
+
 
 
 #TODO: need to scale the coordinates from CSGO data to the coordinates of the map background
