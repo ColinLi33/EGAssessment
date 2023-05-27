@@ -55,4 +55,6 @@ def generateHeatmap(gameState, team, side, areaName):
 generateHeatmap(gameState, 'Team2', 'CT', 'BombsiteB')
 #I am not extremely confident in the result I got because I found this task to be quite challenging for some reason. I thought it should've been a pretty
 #simple task to translate the coordinates from the game to the image so I can overlay the heatmap, but
-#it seemed to be much harder than I anticipated 
+#it seemed to be much harder than I anticipated. I'm not sure how I would make this script work for 
+#every map and every site without some manual inputs, unless there was a simple correlation between
+#the csgo coordinates and the image coordinates

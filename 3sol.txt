@@ -1,1 +1,4 @@
-Q3) I would use a library called pyinstaller https://pyinstaller.org/en/stable/ to package the script into an executable. I could  add a simple interface that allows for input of a parquet file, and map and lets you outline the boundary of interest directly onto the map. I can then take the coordinates from the outline to use for the boundary
+Q3) I would use a library called pyinstaller https://pyinstaller.org/en/stable/ to package the script 
+into an executable. I could add a simple interface that allows for input of a parquet file, 
+and map and lets you outline the boundary of interest directly onto the map. 
+I can then take the coordinates from the outline to use for the boundary
