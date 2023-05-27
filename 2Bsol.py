@@ -22,7 +22,6 @@ def solution(gameState,team,side,site):
     lowestTick = {}
     for roundNum, roundData in team2TSideData:
         lowestTick[roundNum] = roundData['tick'].min()
-
     #filter the data based on conditions needed
     conditions = [(gameState.df['team'] == team), 
                 (gameState.df['side'] == side), 
@@ -31,7 +30,6 @@ def solution(gameState,team,side,site):
     weaponClasses = gameState.getWeaponClasses()
     team2TSideData = gameState.filterDf(conditions)
     for i, roundData in team2TSideData.groupby('round_num'):
-        print(i)
         uniquePlayers = roundData['player'].unique()
         if len(uniquePlayers) >= 2:
             masks = [roundData['player'] == player for player in uniquePlayers]
@@ -74,4 +72,4 @@ print('The average time Team2 entered Bombsite B with 2 Rifles or SMGS on T side
 #I can trust this answer because if I change the site to BombsiteA I can see little to no overlap in round numbers
 #that this strategy is used since it would be quite difficult to have multiple people enter both sites in the same round
 #Another reason I can trust this answer is because BombsiteA is the CT spawn so I get values of basically 0 seconds into the round
-#that the CT side enters the site
+#that the CT side enters the site wit
