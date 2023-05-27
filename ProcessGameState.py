@@ -13,6 +13,9 @@ class ProcessGameState():
     def getCol(self,col):
         return self.df[col]
     
+    def sort(self,col):
+        self.df.sort_values(by=col, inplace=True)
+    
     #function to return a filtered df based on list of conditions
     def filterDf(self, conditions):
         condition = pd.Series(True, index=self.df.index)
