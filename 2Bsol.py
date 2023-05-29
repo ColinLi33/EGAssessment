@@ -68,8 +68,3 @@ for key, val in roundEntries.items():
          counter+=1
          timeSum+=val
 print('The average time Team2 entered Bombsite B with 2 Rifles or SMGS on T side is:', (timeSum/counter)/128, 'seconds into the round.')
-# The average time Team2 entered Bombsite B on T side is: 33.625 seconds into the round.
-#I can trust this answer because if I change the site to BombsiteA I can see little to no overlap in round numbers
-#that this strategy is used since it would be quite difficult to have multiple people enter both sites in the same round
-#Another reason I can trust this answer is because BombsiteA is the CT spawn so I get values of basically 0 seconds into the round
-#that the CT side enters the site wit

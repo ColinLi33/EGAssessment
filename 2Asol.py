@@ -40,7 +40,3 @@ def solution(gameState, team, side, roi, zBounds):
 roundEntries = solution(gameState, 'Team2', 'T', regionOfInterest, zSampleBounds)
 count = sum(value == True for value in roundEntries.values())
 print('This strategy was used', count, 'time(s) which is', count/len(roundEntries), "% of rounds played")
-#OUTPUT: This strategy was used 1 time(s) which is 0.06666666666666667 % of rounds played
-#based on this Team2 does not enter the light blue boundary very often on T side
-#I can trust this answer because if I change the side to CT, I observed a very high rate of this strategy
-#being used and because the boundary is one of the ways CT side gets to BombsiteB it should be pretty commonly used

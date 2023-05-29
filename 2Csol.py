@@ -40,7 +40,7 @@ def generateHeatmap(gameState, team, side, areaName):
             #we want to see where the defenderes are holding from
             for index, row in notMoving.iterrows():
                 positionList.append(scaleCoords((row['x'],row['y'])))
-            continue
+            continue 
 
     xValues = [x[0] for x in positionList]
     yValues = [y[1] for y in positionList]
@@ -53,8 +53,3 @@ def generateHeatmap(gameState, team, side, areaName):
     ax.figure.savefig('./heatmap/2C_' + team + '_' + side + '_' + areaName + '.png', bbox_inches='tight',transparent=True, pad_inches=0)
 
 generateHeatmap(gameState, 'Team2', 'CT', 'BombsiteB')
-#I am not extremely confident in the result I got because I found this task to be quite challenging for some reason. I thought it should've been a pretty
-#simple task to translate the coordinates from the game to the image so I can overlay the heatmap, but
-#it seemed to be much harder than I anticipated. I'm not sure how I would make this script work for 
-#every map and every site without some manual inputs, unless there was a simple correlation between
-#the csgo coordinates and the image coordinates
